@@ -17,18 +17,7 @@ namespace Day6
         }
         static void Part2()
         {
-            var groups = File.ReadAllText("input.txt").Split("\n\n").Select(z => z.Split('\n').ToList());
-
-            int total = 0;
-
-            foreach(var g in groups)
-            {
-                var derp = g.Where(y => y.Length != 0).Select(x => x.ToCharArray().ToList()).Aggregate((c1, c2) => c1.Intersect(c2).ToList());
-
-                total += derp.Count;
-            }
-
-            Console.Write("Part2: " + total);
+            Console.WriteLine("Part2: " + File.ReadAllText("input.txt").Split("\n\n").Select(z => z.Split('\n')).ToList().Select(g => g.Where(y => y.Length != 0).Select(x => x.ToList()).Aggregate((c1, c2) => c1.Intersect(c2).ToList()).Count).Sum());
         }
         static void Main(string[] args)
         {
